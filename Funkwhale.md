@@ -825,7 +825,7 @@ $ curl -v http://192.168.122.74/funkwhale/
 ```
 
 
-# Periodicki backup podataka
+# Periodički backup podataka
 
 Za izradu periodičkog backup-a podataka web aplikacije prvo je potrebno napraviti skriptu 'backup_funkwhale.sh' koja izrađuje sigurnosnu kopiju media i music direktorija koristeci naredbu 'rsync' za prijenos datoteka na različite lokacije:
 
