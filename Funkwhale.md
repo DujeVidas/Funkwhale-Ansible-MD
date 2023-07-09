@@ -12,7 +12,7 @@ nakon toga generiramo šifru u hashiranom obliku koja će se koristiti za prijav
 openssl passwd -6 -salt 0123456789abcdef password   
 $6$0123456789abcdef$xDR267KnEdmU47Tv58n3gNdiOagKeAfIkcMyR6onqwUh3VWY6KqolWZcf8h/.iTNDA0
 ```
-Zatim generiramo rsa kljuc:
+Zatim generiramo rsa ključ:
 
 ```
 ssh-keygen   
@@ -513,12 +513,12 @@ Zatim u istom direktoriju '/etc/ansible' stvaramo 'funhwhale.yaml' datoteku:
 ```
 
 
-Za pokretanje anisble playbook-a pokrenuti sljedecu naredbu:
+Za pokretanje anisble playbook-a pokrenuti sljedeću naredbu:
 ```bash
 ansible-playbook -i inventory.ini funkwhale.yaml
 ```
 
-Ako prilikom pokretanja playbook-a dode do sljedeceg problema sa postgreSQL uslugom:
+Ako prilikom pokretanja playbook-a dođe do sljedećeg problema sa postgreSQL uslugom:
 ```bash
 TASK [Create Funkwhale database] ******************************************************************************************
 [WARNING]: Unable to use /var/lib/postgres/.ansible/tmp as temporary directory, failing back to system: [Errno 13]
@@ -527,7 +527,7 @@ fatal: [arch@192.168.122.74]: FAILED! => {"changed": true, "cmd": ["psql", "-c",
 ...ignoring
 ```
 
-I uslugu postgreSQL nije moguce pokrenuti rucno:
+I uslugu postgreSQL nije moguće pokrenuti ručno:
 ```bash
 $ sudo systemctl status postgresql
 ○ postgresql.service - PostgreSQL database server
@@ -539,7 +539,7 @@ Job for postgresql.service failed because the control process exited with error 
 See "systemctl status postgresql.service" and "journalctl -xeu postgresql.service" for details.
 ```
 
-Potrebno je inicijalizirai novi klaster baze podataka naredbom:
+Potrebno je inicijalizirati novi klaster baze podataka naredbom:
 
 ```bash
 $ sudo -u postgres initdb --locale C.UTF-8 -E UTF8 -D '/var/lib/postgres/data'
@@ -570,7 +570,7 @@ Success. You can now start the database server using:
     pg_ctl -D /var/lib/postgres/data -l logfile start
 ```
 
-Nakon inicijalizacije moguce je rucno pokretanje postgreSQL usluge:
+Nakon inicijalizacije moguće je ručno pokretanje postgreSQL usluge:
 ```bash
 
 $ sudo systemctl start postgresql
@@ -676,7 +676,7 @@ arch@192.168.122.74        : ok=17   changed=10   unreachable=0    failed=0    s
 ```
 
 
-Unutar konfiguracijske datoteke za Apache HTTP posluzitelj 'etc/httpd/conf/httpd.conf' potrebno je odkomentirati liniju:
+Unutar konfiguracijske datoteke za Apache HTTP poslužitelj 'etc/httpd/conf/httpd.conf' potrebno je odkomentirati liniju:
 ```bash
 #LoadModule rewrite_module modules/mod_rewrite.so
 ```
@@ -687,13 +687,13 @@ i na kraj datoteke dodati:
 </Directory>
 ```
 
-zatim ponovo pokrenuti Apache HTTP posluzitelj naredbom:
+Zatim ponovo pokrenuti Apache HTTP posluzitelj naredbom:
 
 ```bash
 sudo systemctl restart httpd
 ```
 
-Sada se aplikaciji moze pristupiti preko host mašine:
+Sada se aplikaciji može pristupiti preko host mašine:
 
 ```bash
 $ curl -v http://192.168.122.74/funkwhale/
